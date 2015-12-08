@@ -5,30 +5,21 @@ using UnityStandardAssets._2D;
 
 public class PlayerAction : MonoBehaviour {
 	private Animator anim_action;
-	//private Rigidbody2D rb;
-	//private PlatformerCharacter2D pc;
-	//private Vector2 point;
-	private BoxCollider2D bc;
+
 
 	public EnemyHealth enemyHealth;
 	public PlayerHealth playerHealth;
 	public GameObject player1;
 	public GameObject player2;
-
-	//private bool isHit = false;
-
-	BoxCollider2D punchBox;
-	//float radius = 1.0f;
-
+	private GameObject punchBox;
 
 
 
     // Use this for initialization
     void Start () 
 	{
-		//pc = GetComponent<PlatformerCharacter2D>();
-		//rb = GetComponent<Rigidbody2D>();
-		bc = GetComponent<BoxCollider2D>();
+		// IgnoreCollider
+		Physics2D.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>(), GameObject.FindGameObjectWithTag("Enemy").GetComponent<Collider2D>()); // Remove bumping damage
 		anim_action = GetComponent<Animator>();
 
 	}
@@ -37,15 +28,13 @@ public class PlayerAction : MonoBehaviour {
     {
 		player1 = GameObject.FindGameObjectWithTag("Player");
         player2 = GameObject.FindGameObjectWithTag("Enemy");
-		punchBox = bc;
+		punchBox = GameObject.FindGameObjectWithTag("Punch");
         enemyHealth = player2.GetComponent<EnemyHealth>();
-		//punchBox = GameObject.FindGameObjectWithTag("Punch");
     }
 
 	void Update()
 	{
-		// IgnoreCollider
-		//Physics2D.IgnoreCollision(player1.GetComponent<Collider2D>(), player2.GetComponent<Collider2D>()); // Remove bumping damage
+
 
 		Punch();
 
@@ -58,16 +47,12 @@ public class PlayerAction : MonoBehaviour {
 	{
         if (Input.GetKeyDown(KeyCode.P))
         {
-			//isHit = true;
-
 			//anim_action.SetBool("Punch", isHit);
             anim_action.SetTrigger("Punch");
 			punchBox.gameObject.SetActive(true);
 
 			         
-			//isHit = false;
 			punchBox.gameObject.SetActive(false);
-
         }
 
 	}
