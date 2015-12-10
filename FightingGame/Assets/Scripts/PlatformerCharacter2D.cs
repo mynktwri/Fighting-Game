@@ -42,14 +42,6 @@ namespace UnityStandardAssets._2D
             life = life * defMod;
             MaxSpeed = MaxSpeed * speedMod;
             JumpForce = JumpForce * jumpMod;
-
-
-            
-            
-
-
-
-
         }
 
 

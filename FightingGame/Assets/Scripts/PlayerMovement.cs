@@ -12,13 +12,17 @@ public class PlayerMovement : MonoBehaviour
 
 	private Vector3 move_direction;
 	public float speed = 10.0f;
-	private Rigidbody2D rb;
-
+    //private Rigidbody2D rb;
+    public SpriteRenderer sr;
 
 
 	void Start()
 	{
-		rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        sr.receiveShadows = true;
+        Sprite s = Resources.Load<Sprite>("that guy.png");
+        sr.sprite = s;
 	}
 
 
